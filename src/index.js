@@ -1,20 +1,38 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from "react-router-dom";
+import React from 'react'
+import * as ReactDOMClient from 'react-dom/client'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Home from './pages/Home'
+import Location from './pages/Logement'
+import Error from './pages/Error'
+import About from './pages/About'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import Header from './layout/Header'
+import Footer from './layout/Footer'
+
+
+import "./style.css";
+
+const root = ReactDOMClient.createRoot(document.getElementById('root'))
+
 root.render(
- <BrowserRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </BrowserRouter>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+	<React.StrictMode>
+		<Router>
+			<Header />
+			<Switch>
+				<Route exact path="/">
+					<Home />
+				</Route>
+				<Route path="/location">
+					<Location />
+				</Route>
+				<Route path="/about">
+					<About />
+				</Route>
+				<Route path="*">
+					<Error />
+				</Route>
+			</Switch>
+			<Footer />
+		</Router>
+	</React.StrictMode>,
+)
